@@ -100,6 +100,7 @@ driver.close()
 # BeautifulSoup code for getting product details for each possible products for all the selected players
 final_table = []
 for name, product_links in final_links.items():
+    print("Looping through products of player:", name)
     for product_link in product_links:
         page = requests.get(product_link)
         soup = BeautifulSoup(page.text, 'html')
@@ -122,7 +123,9 @@ for name, product_links in final_links.items():
                 key = row.find('th').get_text(strip=True)
                 value = col.get_text(strip=True)
                 product_data[key] = value
-        final_table.append(product_data)
+        # Not adding products with multiple signatures by other players
+        if len(product_data['Signed by'].split(',')) == 1:
+            final_table.append(product_data)
 
 # Converting the populated details to dataframe and then storing as CSV
 df = pd.DataFrame(final_table)

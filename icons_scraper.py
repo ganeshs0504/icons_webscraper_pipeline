@@ -68,6 +68,7 @@ final_links = {}
 # Loop through all the dynamically generated links to get product listings for each players
 for name, signed_url in player_name_link.items():
     driver.get(signed_url)
+    print("Gathering product listings for player: ", name)
     try:
         curr_item_count = int(driver.find_element(By.XPATH, xpaths['curr_product_count_xpath']).text)
         total_item_count = int(driver.find_element(By.XPATH, xpaths['total_product_count_xpath']).text)

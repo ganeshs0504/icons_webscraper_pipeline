@@ -1,0 +1,11 @@
+Steps to run the application locally using Docker. 
+
+1. Make sure docker is installed, or download from https://www.docker.com/products/docker-desktop/
+2. Run the docker engine.
+2. Unzip the project folder and open up a terminal from the root folder.
+3. Run the command: `docker-compose build`
+4. This will build the required frameworks inside a virtual machine. It also installs the dependency libraries stored in requirements.txt.
+5. Then run the command: `docker-compose up -d`
+6. This will trigger the scraper script once selenium loads up.
+7. You can attach to the container using `docker attach webscraper` to see the print logs and the progress.
+8. Once the script finish running (around 3 - 4 mins), the generated SCV files will be copied to the output folder.
